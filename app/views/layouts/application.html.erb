@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BartenderRailsApp</title>
+    <title>Bartender</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+
+  <nav>
+    <ul>
+      <% if logged_in? %>
+        <li><%= link_to "My Profile", user_path(@current_user.id) %></li>
+        <li><%= link_to "New Recipe", new_recipe_path %></li>
+        <li><%= link_to "All Recipes", recipe_path %></li>
+        <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        <% end %>
+    </ul>
+  </nav>
 
   <body>
     <%= yield %>

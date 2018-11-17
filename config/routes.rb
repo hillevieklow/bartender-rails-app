@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   get '/login' => 'application#welcome'
   post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
+
+  resources :recipe
   resources :users
   root 'application#welcome', as: :welcome
 
