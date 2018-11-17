@@ -1,0 +1,10 @@
+<h1>Welcome to Bartender!</h1>
+<h3>Please <%= link_to "Log In", login_path %> or <%= link_to "Sign Up", new_user_path %> to continue</h3>
+
+<%= form_tag login_path do %>
+  <%= label_tag :email %>
+  <%= email_field_tag :email, @user.email %>
+  <%= label_tag :password %>
+  <%= password_field_tag :password, @user.password %>
+  <%= submit_tag "Sign in" %>
+<% end %>
