@@ -1,6 +1,6 @@
 # Bartender
 
-Welcome to Bartender! This Ruby on Rails app allows users to add cocktail recipes to a database, and search for recipes after ingredients.
+Welcome to Bartender! This Ruby on Rails app that allows users to add cocktail recipes to a database, and search for recipes after ingredients.
 
 ## To Run this Program Locally:
 
