@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
-  resources :recipe
+  resources :recipes
   resources :users
+  resources :recipe_ingedients do
+    resources :ingredients
+  end
+
   root 'application#welcome', as: :welcome
 
 end
