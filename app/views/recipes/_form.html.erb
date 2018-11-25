@@ -13,5 +13,21 @@
     <%= u.label :quantity %>
     <%= u.text_field :quantity %>
   <% end %>
+  <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
+    <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
+      <%= k.label :name %>
+      <%= k.text_field :name %>
+    <% end %>
+    <%= u.label :quantity %>
+    <%= u.text_field :quantity %>
+  <% end %>
+  <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
+    <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
+      <%= k.label :name %>
+      <%= k.text_field :name %>
+    <% end %>
+    <%= u.label :quantity %>
+    <%= u.text_field :quantity %>
+  <% end %>
   <%= f.submit 'Create Recipe'%>
 <% end %>
