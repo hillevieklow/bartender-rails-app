@@ -1,0 +1,7 @@
+<h1><%= @recipe.name %></h1>
+<p><%= @recipe.description %></p>
+<h2><%= @recipe.directions %></h2>
+<% for r in @recipe.recipe_ingredients %>
+  <p><%= r.ingredient.name%></p>
+  <p><%= r.quantity%></p>
+<% end %>
