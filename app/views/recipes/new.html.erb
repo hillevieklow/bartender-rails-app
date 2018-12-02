@@ -1,3 +1,3 @@
 <h1>New Recipe</h1>
-<%= render partial: "form", locals: {form_action: "create", recipe: @recipe} %>
+<%= render partial: "form", locals: {form_action: "create", recipe: @recipe, ingredients: @ingredients, recipe_ingredient: @recipe_ingredient} %>
 <%= link_to "Back", recipes_path %>
