@@ -5,29 +5,36 @@
   <%= f.text_field :description %>
   <%= f.label :directions %>
   <%= f.text_field :directions %>
+<br>
   <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
+    <%= u.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
     <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
-      <%= k.label :name %>
-      <%= k.text_field :name %>
+      <%= k.label :ingredient_name %>
+      <%= k.text_field :name, placeholder: "New Ingredient" %>
     <% end %>
     <%= u.label :quantity %>
     <%= u.text_field :quantity %>
   <% end %>
+  <br>
   <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
+    <%= u.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
     <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
-      <%= k.label :name %>
-      <%= k.text_field :name %>
+      <%= k.label :ingredient_name %>
+      <%= k.text_field :name, placeholder: "New Ingredient" %>
     <% end %>
     <%= u.label :quantity %>
     <%= u.text_field :quantity %>
   <% end %>
+  <br>
   <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
+    <%= u.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
     <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
-      <%= k.label :name %>
-      <%= k.text_field :name %>
+      <%= k.label :ingredient_name %>
+      <%= k.text_field :name, placeholder: "New Ingredient" %>
     <% end %>
     <%= u.label :quantity %>
     <%= u.text_field :quantity %>
   <% end %>
+  <br>
   <%= f.submit 'Create Recipe'%>
 <% end %>
