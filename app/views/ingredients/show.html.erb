@@ -1,0 +1,5 @@
+<h1>Recipes containing <%= @ingredient.name %>:</h1>
+<% for r in @ingredient.recipes %>
+  <h3><%= link_to r.name, recipe_path %></h3>
+  <p><%= r.description %></p>
+<% end %>
