@@ -1,4 +1,4 @@
-<h1>Index.html.erb</h1>
+<h1>All Recipes</h1>
 <%= @recipes.each do |recipe| %>
   <h2><%= link_to recipe.name, recipe_path(recipe.id) %></h2>
   <p>Published at <%=recipe.created_at.strftime('%b %d, %Y')  %></p>
