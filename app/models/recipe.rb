@@ -3,5 +3,10 @@ class Recipe < ApplicationRecord
   has_many :ingredients, :through => :recipe_ingredients
   belongs_to :user
 
-  accepts_nested_attributes_for :recipe_ingredients
+  validates :name, presence: true, uniqueness: true
+
+  before_save { |recipe| recipe.name = recipe.name.titleize }
+  accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true,
+ reject_if: proc { |attributes| attributes['quantity'].blank? }
+
 end
