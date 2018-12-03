@@ -1,12 +1,27 @@
-<h1>Sign Up for Bartender!</h1>
-<%= form_for @user do |f|%>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit 'Sign Up' %>
-<% end %>
-
-<p>Already a Member? <%= link_to "Log In", login_path %> </p>
+<!DOCTYPE html>
+<html>
+  <div class="container-fluid outlined-section">
+    <h1 class="text-center">Sign Up For <b>Bartender</b></h1>
+    <br>
+      <%= form_for @user do |f|%>
+          <div class="row text-center">
+              <%= f.label :name %>
+              <%= f.text_field :name %>
+              <%= f.label :email %>
+              <%= f.email_field :email %>
+              <%= f.label :password %>
+              <%= f.password_field :password %>
+          <br>
+          <br>
+          <div class="row text-center">
+            <%= f.submit 'Sign Up', class: "btn btn-primary btn-lg"%>
+          </div>
+          <br>
+      <% end %>
+      <div class="text-center">
+        <br>
+        <p><%= link_to "Sign Up with Google", "/auth/google_oauth2" %></p>
+        <p>Already a Member? <%= link_to "Log In", login_path %> </p>
+      </div>
+  </div>
+</html>

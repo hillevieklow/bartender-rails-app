@@ -62,15 +62,7 @@ Recources :ingredients
 
 
 ## Questions
-- I want user to be able to pick from already existing ingredients to create a new recipe
-
-- When clicking on an ingredient, I want to show ALL recipes containing that ingredient (active record method)
-
+- find and find_by in controllers are playing games. If I pick one, it wont work for some examples, and vice versa
 
 
 - How do I delete the recipe residue on recipe index page.
-
-
-
-
-look into reject_if-ish in model; allows to avoid saving empty fields

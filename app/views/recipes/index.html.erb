@@ -1,7 +1,9 @@
-<h1>All Recipes</h1>
-<%= @recipes.each do |recipe| %>
-  <h2><%= link_to recipe.name, recipe_path(recipe.id) %></h2>
-  <p><b>Upvotes: <%= recipe.upvotes %></b></p>
-  <p>Published at <%=recipe.created_at.strftime('%b %d, %Y')  %></p>
-  <p><%=truncate(recipe.description, length: 100, omission: "... "){ link_to "Read More", recipe_path(recipe.id) } %></p>
-<% end %>
+<div class="row outlined-section">
+  <h1>All Recipes (<%= Recipe.all.count%>)</h1>
+  <%= @recipes.each do |recipe| %>
+    <h2><%= link_to recipe.name, recipe_path(recipe.id) %></h2>
+    <p><b>Upvotes: <%= recipe.upvotes %></b></p>
+    <p>Published at <%=recipe.created_at.strftime('%b %d, %Y')  %></p>
+    <p><%=truncate(recipe.description, length: 100, omission: "... "){ link_to "Read More", recipe_path(recipe.id) } %></p>
+  <% end %>
+</div>

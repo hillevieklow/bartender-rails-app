@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   root 'application#welcome', as: :welcome
 
   post '/recipes/:id/upvote' => 'recipes#upvote'
+  post '/recipes/:id/downvote' => 'recipes#downvote'
 end

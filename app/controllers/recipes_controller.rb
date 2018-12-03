@@ -23,6 +23,12 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+  def downvote
+    find_recipe
+    @recipe.update(:upvotes => @recipe.upvotes-1)
+    redirect_to recipe_path(@recipe)
+  end
+
   def create
     # binding.pry
     @recipe = current_user.recipes.build(recipe_params)

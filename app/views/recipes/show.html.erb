@@ -1,13 +1,18 @@
-<h1><%= @recipe.name %></h1>
-<p>Upvotes: <%=@recipe.upvotes%>
-      <%= link_to "INSERT UPVOTE ICON", { :controller => 'recipes',  :action=>"upvote",
-      :recipe_id => @recipe.id} , :method => :post%> </p>
-<h3>Description:</h3>
-<p><%= @recipe.description %></p>
-<h3>Directions:</h3>
-<p><%= @recipe.directions %></p>
-<h3>Ingredients:</h3>
-<% for r in @recipe.recipe_ingredients %>
-  <p><%= link_to r.ingredient.name, recipe_ingedient_ingredient_path(r.ingredient, r)%></p>
-  <p>Quantity: <%= r.quantity%></p>
-<% end %>
+<div class="row outlined-section">
+  <h1><%= @recipe.name %> </h1>
+  <h4><b>Upvotes: <%=@recipe.upvotes%> </b></h4>
+  <h3>Description:</h3>
+  <p><%= @recipe.description %></p>
+  <h3>Directions:</h3>
+  <p><%= @recipe.directions %></p>
+  <h3>Ingredients:</h3>
+  <% for r in @recipe.recipe_ingredients %>
+    <h4><%= link_to r.ingredient.name, recipe_ingedient_ingredient_path(r.ingredient, r)%>, <%= r.quantity%></h4>
+  <% end %>
+  <h3>Was This Recipe Useful?
+    <%= link_to "", { :controller => 'recipes',  :action=>"upvote",
+        :recipe_id => @recipe.id} , :method => :post, :class => "glyphicon glyphicon-thumbs-up"%>
+    <%= link_to "", { :controller => 'recipes',  :action=>"downvote",
+        :recipe_id => @recipe.id} , :method => :post, :class => "glyphicon glyphicon-thumbs-down"%>
+  </h3>
+</div

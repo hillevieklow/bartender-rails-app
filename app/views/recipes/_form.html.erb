@@ -1,11 +1,11 @@
 <%= form_for recipe, url: {action: form_action, params: {id: recipe.id}} do |f|%>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :directions %>
-  <%= f.text_field :directions %>
+<div class="text-center">
+<h3>Recipe Name</h3>
+  <div class="row">
+    <%= f.text_field :name %>
+  </div>
 <br>
+<h3>Ingredients</h3>
   <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
     <%= u.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
     <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
@@ -35,6 +35,16 @@
     <%= u.label :quantity %>
     <%= u.text_field :quantity %>
   <% end %>
+  <br><br>
+<h3>Description</h3>
+  <div class="row">
+    <%= f.text_area :description,  :rows => 3, style: 'width:75%;' %>
+    </div>
+<h3>Directions</h3>
+  <div class="row">
+    <%= f.text_area :directions,  :rows => 6, style: 'width:75%;' %>
+  </div>
   <br>
-  <%= f.submit 'Create Recipe'%>
+  <%= f.submit 'Create Recipe', :class => "btn btn-primary btn-lg"%>
+</div>
 <% end %>

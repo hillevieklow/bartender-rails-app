@@ -9,4 +9,8 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true,
  reject_if: proc { |attributes| attributes['quantity'].blank? }
 
+ def self.most_popular
+   self.all.order(upvotes: :desc)
+ end
+
 end
