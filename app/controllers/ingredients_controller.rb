@@ -1,4 +1,6 @@
 class IngredientsController < ApplicationController
+  # before_action :require_logged_in
+
   def index
     @ingredients = Ingredient.all
   end
@@ -13,7 +15,7 @@ class IngredientsController < ApplicationController
 
   def find_recipe_ingredient_and_ingredient
     @ingredient = Ingredient.find_by(params[:id])
-    @recipe_ingredient = RecipeIngredient.find_by(params[:id])
+    @recipe_ingredient = RecipeIngredient.find(params[:id])
   end
 
 
