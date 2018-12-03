@@ -8,3 +8,6 @@
   <%= password_field_tag :password, @user.password %>
   <%= submit_tag "Sign in" %>
 <% end %>
+
+
+<p><%= link_to "Log in with Google", "/auth/google_oauth2" %>
