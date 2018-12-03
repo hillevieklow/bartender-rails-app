@@ -62,12 +62,13 @@ Recources :ingredients
 
 
 ## Questions
-1. I need in my form be able to create a new recipe, but also add ingredients.. and ingredients I want to save in a different database. One should be able to pick from ingredients that already exist, OR, create new ones. For each ingredient in a recipe, (recipeingredient) needs to allow for quantity aswell. How do I implement this?
-- How do I create a form that allows to save in two different databases?
-- Should I just simplify it somehow?
+- I want user to be able to pick from already existing ingredients to create a new recipe
 
-2. How do I delete the recipe residue on recipe index page..
+- When clicking on an ingredient, I want to show ALL recipes containing that ingredient (active record method)
 
+
+
+- How do I delete the recipe residue on recipe index page.
 
 
 
