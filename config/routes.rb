@@ -4,13 +4,16 @@ Rails.application.routes.draw do
   get '/login' => 'application#welcome'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+  get "/auth/:provider/callback" => "sessions#create"
 
   resources :recipes
   resources :users
   resources :recipe_ingedients do
-    resources :ingredients
+    resources :ingredients, only: [:show]
   end
+  resources :ingredients
 
   root 'application#welcome', as: :welcome
 
+  post '/recipes/:id/upvote' => 'recipes#upvote'
 end
