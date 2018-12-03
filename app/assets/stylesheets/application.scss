@@ -20,12 +20,15 @@
    padding-bottom: 30px;
  }
 
+ ul.nav a:hover { color: #000000 !important; background-color: #FFF; }
+
 .navbar-nav > li > a {
   font-size: 20px;
   padding-top: 0px;
    color: #2C608F
  }
  .navbar {
+   font-weight: bold;
    background: #ffffff;
    border: 1px ridge #2C608F;
  }

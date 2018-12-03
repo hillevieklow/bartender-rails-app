@@ -11,15 +11,15 @@
       </li>
     <% end %>
     </ul>
-
-  <br>
-    <h3>Check Out These Popular Recipes: </h3>
-    <% for r in Recipe.all.most_popular%>
-      <h4><%= link_to r.name, recipe_path(r) %>, <%= r.upvotes%> upvotes</h4>
-      <p>
-        <%= truncate(r.description, length: 120, omission: "... "){ link_to "Read More", recipe_path(r.id) } %>
-        </p>
-        <br>
-    <% end %>
   <% end %>
+  <br>
+  <h3>Check Out These Popular Recipes: </h3>
+  <% for r in Recipe.all.most_popular%>
+    <h4><%= link_to r.name, recipe_path(r) %>, <%= r.upvotes%> upvotes</h4>
+    <p>
+      <%= truncate(r.description, length: 120, omission: "... "){ link_to "Read More", recipe_path(r.id) } %>
+      </p>
+      <br>
+  <% end %>
+
 </div>
