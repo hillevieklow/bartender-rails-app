@@ -1,4 +1,7 @@
 <h1><%= @recipe.name %></h1>
+<p>Upvotes: <%=@recipe.upvotes%>
+      <%= link_to "INSERT UPVOTE ICON", { :controller => 'recipes',  :action=>"upvote",
+      :recipe_id => @recipe.id} , :method => :post%> </p>
 <h3>Description:</h3>
 <p><%= @recipe.description %></p>
 <h3>Directions:</h3>
