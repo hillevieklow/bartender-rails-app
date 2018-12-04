@@ -51,7 +51,6 @@ class RecipesController < ApplicationController
     find_recipe
     @recipe.update(recipe_params)
     if @recipe.valid?
-      @recipe.save # not sure
       redirect_to recipe_path(@recipe)
     else
       @ingredients = Ingredients.all
