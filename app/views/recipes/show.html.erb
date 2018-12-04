@@ -1,6 +1,6 @@
 <div class="row outlined-section">
   <h1><%= @recipe.name %>
-  <% if @recipe.user_id = @current_user.id %>
+  <% if @recipe.user_id == @current_user.id %>
     <%= link_to "Edit", { :controller => 'recipes',  :action=>"edit",
        :id => @recipe.id}, :class => "btn btn-outline-info fas fa-edit" %>
     <%= link_to "Delete", { :controller => 'recipes',  :action=>"destroy",
@@ -8,6 +8,7 @@
   <% end %> </h1>
 
   <h4><b>Upvotes: <%=@recipe.upvotes%> </b></h4>
+  <h5>Created By: <%= @current_user.name %></h5>
   <h3>Description:</h3>
   <p><%= @recipe.description %></p>
   <h3>Directions:</h3>
