@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   get "/auth/facebook/callback" => "sessions#create"
 
   resources :recipes
-  resources :users
+  resources :users, only: [:new, :show]
   resources :recipe_ingedients do
     resources :ingredients, only: [:show]
   end
-  resources :ingredients
+  resources :ingredients, only: [:show]
 
   root 'application#welcome', as: :welcome
 
