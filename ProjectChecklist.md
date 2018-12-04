@@ -52,17 +52,10 @@ User signup validations, validations for recipe name (unique) and ingredients (u
 
 
 ## What 3rd party login service will you use?
-facebook
+google
 
 ## With the way your models are setup what nested routes will you use to meet the requirement?
 Resources :users
 Resources :recipes do
 	Resources :ingredients
 Recources :ingredients
-
-
-## Questions
-- find and find_by in controllers are playing games. If I pick one, it wont work for some examples, and vice versa
-
-
-- How do I delete the recipe residue on recipe index page.

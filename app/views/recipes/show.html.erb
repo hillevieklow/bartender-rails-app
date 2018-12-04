@@ -1,5 +1,12 @@
 <div class="row outlined-section">
-  <h1><%= @recipe.name %> </h1>
+  <h1><%= @recipe.name %>
+  <% if @recipe.user_id = @current_user.id %>
+    <%= link_to "Edit", { :controller => 'recipes',  :action=>"edit",
+       :id => @recipe.id}, :class => "btn btn-outline-info fas fa-edit" %>
+    <%= link_to "Delete", { :controller => 'recipes',  :action=>"destroy",
+       :id => @recipe.id} , :method => :delete, :class => "btn btn-outline-warning fas fa-trash-alt" %>
+  <% end %> </h1>
+
   <h4><b>Upvotes: <%=@recipe.upvotes%> </b></h4>
   <h3>Description:</h3>
   <p><%= @recipe.description %></p>
@@ -7,7 +14,7 @@
   <p><%= @recipe.directions %></p>
   <h3>Ingredients:</h3>
   <% for r in @recipe.recipe_ingredients %>
-    <h4><%= link_to r.ingredient.name, recipe_ingedient_ingredient_path(r.ingredient, r)%>, <%= r.quantity%></h4>
+    <h4><%= link_to r.ingredient.name, recipe_ingedient_ingredient_path(r, r.ingredient)%>, <%= r.quantity%></h4>
   <% end %>
   <h3>Was This Recipe Useful?
     <%= link_to "", { :controller => 'recipes',  :action=>"upvote",
