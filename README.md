@@ -29,7 +29,7 @@ To deploy the program in the browser, run
 
 ```thin start --ssl```
 
-Navigate to ```https://localserver:3000/``` to get started.
+Navigate to ```https://localhost:3000/``` to get started.
 
 
 ## Built With
