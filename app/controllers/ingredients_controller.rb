@@ -14,7 +14,8 @@ class IngredientsController < ApplicationController
   private
 
   def find_recipe_ingredient_and_ingredient
-    @ingredient = Ingredient.find_by(params[:id])
+    # binding.pry
+    @ingredient = Ingredient.find(params[:id])
     @recipe_ingredient = RecipeIngredient.find(params[:id])
   end
 
