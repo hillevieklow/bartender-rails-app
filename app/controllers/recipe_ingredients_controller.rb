@@ -1,5 +1,5 @@
 class RecipeIngredientsController < ApplicationController
-  # before_action :require_logged_in
+  before_action :require_logged_in
 
   def new
     @recipe_ingredient = current_user.recipe_ingredients.build
