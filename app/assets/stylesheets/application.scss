@@ -48,18 +48,22 @@
  .indent {
    margin-left: 3em;
  }
- blockquote {
-   width: 65%;
-   margin-left: auto;
-   margin-right: auto;
-   margin-bottom: 1em;
- }
+
  h1,h2,h3,h4,h5 {
    color: #2C608F;
  }
+
+ .h2-error {
+   color: red !important;
+ }
+
  .form-area label {
    color: #2C608F;
  }
  .underline-heading {
    border-bottom: 2px solid #FFED53;
+ }
+
+ #error_explanation {
+   color: red;
  }

@@ -1,4 +1,14 @@
 <div class="indent outlined-section text-center">
   <h1><b>New Recipe</b></h1>
+
+<% if @recipe.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="h2-error"> oops, the following errors occured:</h2>
+    <% @recipe.errors.full_messages.each do |msg| %>
+      <p><%= msg %>!</p>
+    <% end %>
+  </div>
+<% end %>
+
   <%= render partial: "form", locals: {form_action: "create", recipe: @recipe, ingredients: @ingredients, recipe_ingredient: @recipe_ingredient} %>
 </div>

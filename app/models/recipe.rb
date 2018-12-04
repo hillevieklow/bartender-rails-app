@@ -4,6 +4,10 @@ class Recipe < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true, uniqueness: true
+  validates :recipe_ingredients, presence: true
+  validates :description, presence: true
+  validates :directions, presence: true
+
 
   before_save { |recipe| recipe.name = recipe.name.titleize }
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true,

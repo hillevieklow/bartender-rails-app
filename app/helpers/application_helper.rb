@@ -6,4 +6,5 @@ module ApplicationHelper
       return :welcome
     end
   end
+
 end
