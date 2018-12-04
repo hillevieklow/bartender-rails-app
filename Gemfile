@@ -30,7 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Allows for omniauth login via google
 gem 'omniauth'
 gem 'dotenv-rails'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'thin'
 
 # Bootstrap
 gem 'bootstrap-sass', '3.3.7'
