@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   get "/auth/facebook/callback" => "sessions#create"
+  get 'users/:id/recipes' => 'users#index'
 
   resources :recipes
-  resources :users, only: [:new, :show, :index]
-  resources :recipe_ingedients do
-    resources :ingredients, only: [:show]
+  resources :users do
+    resources :recipes
   end
+
   resources :ingredients, only: [:show]
 
   root 'application#welcome', as: :welcome
