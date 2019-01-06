@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = current_user.recipes.build
+    @recipe.recipe_ingredients.build
     @ingredients = Ingredient.all
   end
 
@@ -33,8 +34,7 @@ class RecipesController < ApplicationController
     # binding.pry
     @recipe = current_user.recipes.build(recipe_params)
 
-    if @recipe.valid?
-      @recipe.save
+    if @recipe.save
       redirect_to @recipe
     else
       @ingredients = Ingredient.all
