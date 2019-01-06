@@ -4,9 +4,4 @@ class Ingredient < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   before_save { |ingredient| ingredient.name = ingredient.name.titleize }
 
-
-  def self.recipes
-    includes(recipe: :recipe_ingredients).where(recipe_ingredients: {name: self})
-  end
-
 end
