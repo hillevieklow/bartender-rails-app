@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :require_logged_in, except: [:new, :create]
 
   def index
+    find_user
     @users = User.all.sort { |a,b| a.name <=> b.name }
   end
 
