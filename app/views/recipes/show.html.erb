@@ -8,14 +8,14 @@
   <% end %> </h1>
 
   <h4><b>Upvotes: <%=@recipe.upvotes%> </b></h4>
-  <h5>Created By: <%= @current_user.name %></h5>
+  <h5>Created By: <%= link_to @recipe.user.name, user_recipes_path(@recipe.user_id) %></h5>
   <h3>Description:</h3>
   <p><%= @recipe.description %></p>
   <h3>Directions:</h3>
   <p><%= @recipe.directions %></p>
   <h3>Ingredients:</h3>
   <% for r in @recipe.recipe_ingredients %>
-    <h4><%= link_to r.ingredient.name, recipe_ingedient_ingredient_path(r, r.ingredient)%>, <%= r.quantity%></h4>
+    <h4><%= link_to r.ingredient.name, ingredient_path(r.ingredient)%>, <%= r.quantity%></h4>
   <% end %>
   <h3>Was This Recipe Useful?
     <%= link_to "", { :controller => 'recipes',  :action=>"upvote",
