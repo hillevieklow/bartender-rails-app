@@ -6,34 +6,15 @@
   </div>
 <br>
 <h3>Ingredients</h3>
-  <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
+  <%= f.fields_for(:recipe_ingredients) do |u| %>
     <%= u.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
-    <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
+    <%= u.fields_for(:ingredient) do |k| %>
       <%= k.label :ingredient_name %>
       <%= k.text_field :name, placeholder: "New Ingredient" %>
     <% end %>
     <%= u.label :quantity %>
     <%= u.text_field :quantity %>
-  <% end %>
-  <br>
-  <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
-    <%= u.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
-    <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
-      <%= k.label :ingredient_name %>
-      <%= k.text_field :name, placeholder: "New Ingredient" %>
-    <% end %>
-    <%= u.label :quantity %>
-    <%= u.text_field :quantity %>
-  <% end %>
-  <br>
-  <%= f.fields_for(:recipe_ingredients, recipe.recipe_ingredients.build) do |u| %>
-    <%= u.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
-    <%= u.fields_for(:ingredient, recipe.recipe_ingredients.build.build_ingredient) do |k| %>
-      <%= k.label :ingredient_name %>
-      <%= k.text_field :name, placeholder: "New Ingredient" %>
-    <% end %>
-    <%= u.label :quantity %>
-    <%= u.text_field :quantity %>
+    <br>
   <% end %>
   <br><br>
 <h3>Description</h3>
