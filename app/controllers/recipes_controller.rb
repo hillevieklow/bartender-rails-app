@@ -7,7 +7,10 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = current_user.recipes.build
-    @recipe.recipe_ingredients.build
+    # @recipe.recipe_ingredients.build
+    3.times do
+      @recipe.recipe_ingredients.build.build_ingredient
+    end
     @ingredients = Ingredient.all
   end
 
