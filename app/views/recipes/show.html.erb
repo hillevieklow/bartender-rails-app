@@ -17,6 +17,8 @@
   <% for r in @recipe.recipe_ingredients %>
     <h4><%= link_to r.ingredient.name, ingredient_path(r.ingredient)%>, <%= r.quantity%></h4>
   <% end %>
+<h3> Add ingredients: <%= link_to "here", new_recipe_recipe_ingredient_path(@recipe.id)%> </h3>
+
   <h3>Was This Recipe Useful?
     <%= link_to "", { :controller => 'recipes',  :action=>"upvote",
         :recipe_id => @recipe.id} , :method => :post, :class => "glyphicon glyphicon-thumbs-up"%>
