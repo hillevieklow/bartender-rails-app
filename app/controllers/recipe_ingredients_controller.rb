@@ -2,23 +2,32 @@ class RecipeIngredientsController < ApplicationController
   before_action :require_logged_in
 
   def new
-    @recipe_ingredient = current_user.recipe_ingredients.build
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredients = Ingredient.all
+    @recipe_ingredient = @recipe.recipe_ingredients.build
+    @recipe_ingredient.build_ingredient
   end
 
 
   def create
-    @recipe_ingredient = current_user.recipe_ingredient.build(recipe_ingredient_params)
-    if @recipe_ingredient.valid?
-      @recipe_ingredient.save
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredients = Ingredient.all
+    @recipe_ingredient = @recipe.recipe_ingredients.build
+    @recipe_ingredient.build_ingredient
+    #binding.pry
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
     else
+      @ingredients = Ingredient.all
       render :new
     end
   end
 
+
   private
 
   def recipe_ingredient_params
-    params.require(:recipe_ingredient).permit(:name, :quantity)
+    params.require(:recipe_ingredient).permit(:quantity)
   end
 
   def find_recipe_ingredient
