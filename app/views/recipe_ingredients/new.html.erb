@@ -1,0 +1,23 @@
+<h1 class="text-center">Add ingredient to <b><%= @recipe.name %></b> Recipe</h1>
+<% if @recipe.errors.any? %>
+  <div id="error_explanation" class ="text-center">
+    <h2 class="h2-error"> oops, the following errors occured:</h2>
+    <% @recipe.errors.full_messages.each do |msg| %>
+      <p><%= msg %>!</p>
+    <% end %>
+  </div>
+<% end %>
+<br>
+
+<%= form_for @recipe_ingredient, url: {action: "create", params: {recipe_id: @recipe.id}} do |f|%>
+<div class="text-center">
+  <%= f.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
+  <%= f.fields_for(:ingredient) do |k| %>
+    <%= k.label :ingredient_name %>
+    <%= k.text_field :name, placeholder: "New Ingredient" %>
+  <% end %>
+  <%= f.label :quantity %>
+  <%= f.text_field :quantity %>
+  <br><br>
+<%= f.submit 'Add Ingredient', :class => "btn btn-primary btn-lg"%>
+<% end %>
