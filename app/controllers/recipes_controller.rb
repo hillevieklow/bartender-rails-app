@@ -2,7 +2,14 @@ class RecipesController < ApplicationController
   before_action :require_logged_in
 
   def index
-    @recipes = Recipe.all
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @recipes = @user.recipes
+    else
+      @recipes = Recipe.all
+    end
+
+
   end
 
   def new
@@ -16,7 +23,7 @@ class RecipesController < ApplicationController
 
   def show
     find_recipe
-    @recipe_ingredient = RecipeIngredient.find_by(params[:id]) # MIGHT BE JUST FIND
+    @recipe_ingredient = RecipeIngredient.find(params[:id])
     # binding.pry
     # @ingredient = Ingredient.find(params[:id])
   end
@@ -41,7 +48,11 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     else
       @ingredients = Ingredient.all
+      3.times do
+        @recipe.recipe_ingredients.build.build_ingredient
+      end
       render :new
+      # redirect_to new_recipe_path #render makes form input for ingredients disappear
     end
   end
 
@@ -66,7 +77,6 @@ class RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_path
   end
-
 
   private
 
