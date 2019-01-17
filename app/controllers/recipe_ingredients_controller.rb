@@ -27,7 +27,7 @@ class RecipeIngredientsController < ApplicationController
   private
 
   def recipe_ingredient_params
-    params.require(:recipe_ingredient).permit(:quantity)
+    params.require(:recipe_ingredient).permit(:quantity, :ingredient_id, ingredient_attributes: [ :name ])
   end
 
   def find_recipe_ingredient
