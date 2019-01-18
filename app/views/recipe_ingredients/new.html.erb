@@ -9,8 +9,8 @@
 <% end %>
 <br>
 
-<%= form_for @recipe_ingredient, url: {action: "create", params: {recipe_id: @recipe.id}} do |f|%>
 <div class="text-center">
+<%= form_for @recipe_ingredient, url: {action: "create", params: {recipe_id: @recipe.id}} do |f|%>
   <%= f.select(:ingredient_id, @ingredients.collect {|i| [ i.name, i.id ] }, {include_blank: 'Select Ingredient'})%> or
   <%= f.fields_for(:ingredient) do |k| %>
     <%= k.label :ingredient_name %>
@@ -19,5 +19,6 @@
   <%= f.label :quantity %>
   <%= f.text_field :quantity %>
   <br><br>
-<%= f.submit 'Add Ingredient', :class => "btn btn-primary btn-lg"%>
+  <%= f.submit 'Add Ingredient', :class => "btn btn-primary btn-lg"%>
 <% end %>
+</div>
