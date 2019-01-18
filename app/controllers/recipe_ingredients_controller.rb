@@ -12,7 +12,7 @@ class RecipeIngredientsController < ApplicationController
   def create
     @recipe = Recipe.find(params[:recipe_id])
     @ingredients = Ingredient.all
-    @recipe_ingredient = @recipe.recipe_ingredients.build
+    @recipe_ingredient = @recipe.recipe_ingredients.build(recipe_ingredient_params)
     @recipe_ingredient.build_ingredient
     #binding.pry
     if @recipe.save
