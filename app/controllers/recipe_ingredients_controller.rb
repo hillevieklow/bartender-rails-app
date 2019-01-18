@@ -13,8 +13,6 @@ class RecipeIngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @ingredients = Ingredient.all
     @recipe_ingredient = @recipe.recipe_ingredients.build(recipe_ingredient_params)
-    @recipe_ingredient.build_ingredient
-    #binding.pry
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -22,7 +20,6 @@ class RecipeIngredientsController < ApplicationController
       render :new
     end
   end
-
 
   private
 
