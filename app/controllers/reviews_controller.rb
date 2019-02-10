@@ -3,6 +3,8 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = @recipe.reviews
+    # render :layout => false
+    render :json => @reviews
   end
 
   private
