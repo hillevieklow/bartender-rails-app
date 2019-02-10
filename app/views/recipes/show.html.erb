@@ -25,5 +25,9 @@
         :recipe_id => @recipe.id} , :method => :post, :class => "glyphicon glyphicon-thumbs-up"%>
     <%= link_to "", { :controller => 'recipes',  :action=>"downvote",
         :recipe_id => @recipe.id} , :method => :post, :class => "glyphicon glyphicon-thumbs-down"%>
-  </h3>
-</div
+  </h3><br>
+  <h4><%= link_to "See Reviews", recipe_reviews_path(@recipe), class: "load_reviews" %></h4>
+
+<div class="reviews"></div>
+
+</div>
