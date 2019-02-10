@@ -24,3 +24,5 @@ recipe_ingredients = RecipeIngredient.create([{name: ingredients[0].name, ingred
   {name: ingredients[3].name, ingredient_id: ingredients[3].id, recipe_id: recipes[1].id, quantity: "5 ounces"},
   {name: ingredients[0].name, ingredient_id: ingredients[0].id, recipe_id: recipes[2].id, quantity: "2 ounces"},
   {name: ingredients[4].name, ingredient_id: ingredients[4].id, recipe_id: recipes[2].id, quantity: "4 ounces"}])
+
+reviews = Review.create([{title: "Test comment", content: "Lorem ptsd rwehf sfhsefs dfsufhe shef sss", user_id: users[0].id, recipe_id: recipes[0].id}])
