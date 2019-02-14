@@ -26,8 +26,29 @@
     <%= link_to "", { :controller => 'recipes',  :action=>"downvote",
         :recipe_id => @recipe.id} , :method => :post, :class => "glyphicon glyphicon-thumbs-down"%>
   </h3><br>
-  <h4><%= link_to "See Reviews", recipe_reviews_path(@recipe), class: "load_reviews" %></h4>
 
-<div class="reviews"></div>
+  <div class="reviews">
+    <% if @current_user %>
+      <h4>Add a review:</h4>
+        <%= form_for @review, url: recipe_reviews_path(@recipe, @review)  do |f| %>
+          <p><strong>Title</strong> <%= f.text_field :title, class: 'commentBox form-control' %></p>
+          <p><strong>Content</strong> <%= f.text_area :content, class: 'commentBox form-control' %></p>
+          <button type="submit" class="btn btn-sm btn-primary">Post Review</button>
+        <% end %><br>
+    <% else %>
+      <p>Please log in order to add a review.</p>
+    <% end %>
+    <h4>Reviews:</h4>
+    <div id="submitted-reviews">
+      <% @recipe.reviews.each do |review| %>
+      <div class="well well-white" id="comment-<%= review.id %>">
+        <h4><%= review.title %></h4>
+        <p><%= review.content %></p>
+        <strong> - <%= link_to review.user.name, user_recipes_path(review.user) %> </strong>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
 
 </div>
