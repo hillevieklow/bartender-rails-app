@@ -18,4 +18,20 @@ class Recipe < ApplicationRecord
    self.all.order(upvotes: :desc)
  end
 
+ def previous
+   if previous_recipe = self.class.where("id < ?", id).last
+     previous_recipe
+   else
+     Recipe.last
+   end
+ end
+
+ def next
+   if next_recipe = self.class.where("id > ?", id).first
+     next_recipe
+   else
+     Recipe.first
+   end
+ end
+
 end
