@@ -1,9 +1,0 @@
-<ol>
-  <% @reviews.each do |review| %>
-  <li>
-  <h4><%= review.title %></h4>
-  <p><%= review.content %><p>
-  <b>by user: <%= link_to review.user.name, user_recipes_path(review.user) %></b>
-  </li>
-  <% end %>
-</ol>
