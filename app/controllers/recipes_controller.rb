@@ -2,14 +2,11 @@ class RecipesController < ApplicationController
   before_action :require_logged_in
 
   def index
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-      @recipes = @user.recipes
-    else
-      @recipes = Recipe.all
+    @recipes = Recipe.all
+    respond_to do |f|
+      f.html {render :index}
+      f.json {render json: @recipes}
     end
-
-
   end
 
   def new
@@ -24,6 +21,17 @@ class RecipesController < ApplicationController
   def show
     find_recipe
     @recipe_ingredient = RecipeIngredient.find(params[:id])
+    if current_user
+      @review = current_user.reviews.build(recipe: @recipe)
+    end
+
+
+    respond_to do |f|
+      f.html
+      f.json {render json: @recipe}
+    end
+    # @reviews = @recipe.reviews
+    # @review = Review.new
     # binding.pry
     # @ingredient = Ingredient.find(params[:id])
   end
