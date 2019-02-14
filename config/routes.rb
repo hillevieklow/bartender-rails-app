@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
 
   resources :recipes do
-    resources :reviews
-    resources :recipe_ingredients
+    resources :reviews # GET recipe/:id/reviews
+    resources :recipe_ingredients 
   end
 
   resources :users do
