@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :reviews # GET recipe/:id/reviews
-    resources :recipe_ingredients 
+    resources :recipe_ingredients
   end
 
   resources :users do
@@ -23,4 +23,7 @@ Rails.application.routes.draw do
 
   post '/recipes/:id/upvote' => 'recipes#upvote'
   post '/recipes/:id/downvote' => 'recipes#downvote'
+
+  get '/recipes/:id/next', to: 'recipes#next_recipe'
+  get '/recipes/:id/previous', to: 'recipes#previous_recipe'
 end
