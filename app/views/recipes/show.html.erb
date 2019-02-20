@@ -1,5 +1,13 @@
 <div class="row outlined-section">
-  <h1><%= @recipe.name %>
+  <div class="col-sm-6 text-left">
+    <a href="#" class="js-previous btn btn-primary btn-sm" data-id="<%=@recipe.id%>">Previous</a><br><br>
+  </div>
+  <div class="col-sm-6 text-right">
+    <a href="#" class="js-next btn btn-primary btn-sm" data-id="<%=@recipe.id%>">Next</a><br><br>
+  </div>
+
+  <h1><span class="recipeName"><%= @recipe.name %></span>
+
   <% if @recipe.user_id == @current_user.id %>
     <%= link_to "Edit", { :controller => 'recipes',  :action=>"edit",
        :id => @recipe.id}, :class => "btn btn-outline-info fas fa-edit" %>
@@ -7,19 +15,29 @@
        :id => @recipe.id} , :method => :delete, :class => "btn btn-outline-warning fas fa-trash-alt" %>
   <% end %> </h1>
 
-  <h4><b>Upvotes: <%=@recipe.upvotes%> </b></h4>
-  <h5>Created By: <%= link_to @recipe.user.name, user_recipes_path(@recipe.user_id) %></h5>
+
+  <h4><b>Upvotes: <span class="recipeUpvotes"><%=@recipe.upvotes%></span></b></h4>
+  <h5>Created By: <span class="recipeUser"><%=@recipe.user.name%></span></h5>
   <h3>Description:</h3>
-  <p><%= @recipe.description %></p>
+  <p><span class="recipeDescription"><%= @recipe.description %></span></p>
   <h3>Directions:</h3>
-  <p><%= @recipe.directions %></p>
+  <p><span class="recipeDirections"><%= @recipe.directions %></span></p>
+  <div class="recipe-ingredients-list">
   <h3>Ingredients:</h3>
+
+  <div id="ri-list">
+  </div>
+
+  <div id="ri-original">
   <% for r in @recipe.recipe_ingredients %>
     <h4><%= link_to r.ingredient.name, ingredient_path(r.ingredient)%>, <%= r.quantity%></h4>
   <% end %>
+  </div>
   <% if @recipe.user_id == @current_user.id %>
     <h4><b><%= link_to "+ Add Ingredients", new_recipe_recipe_ingredient_path(@recipe.id)%> </b></h4>
   <% end %>
+  </div>
+
   <h3>Was This Recipe Useful?
     <%= link_to "", { :controller => 'recipes',  :action=>"upvote",
         :recipe_id => @recipe.id} , :method => :post, :class => "glyphicon glyphicon-thumbs-up"%>
@@ -38,13 +56,14 @@
     <% else %>
       <p>Please log in order to add a review.</p>
     <% end %>
+
     <h4>Reviews:</h4>
     <div id="submitted-reviews">
       <% @recipe.reviews.each do |review| %>
-      <div class="well well-white" id="comment-<%= review.id %>">
+      <div class="well well-white" id="review-<%= review.id %>">
         <h4><%= review.title %></h4>
         <p><%= review.content %></p>
-        <strong> - <%= link_to review.user.name, user_recipes_path(review.user) %> </strong>
+        <strong> - <%= review.user.name %> </strong>
       </div>
       <% end %>
     </div>
