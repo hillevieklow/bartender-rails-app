@@ -22,38 +22,32 @@ $(function(){
   /////////////////////////////////////////////
 
 
-  let recipeArray = [];
-  let id = parseInt($(".js-next").attr("data-id"));
-
+  // only loads all recipes if there are any
   if ($("#recipesInfo").length) {
     loadAllRecipes();
   }
 
+  // Loads all the recipes with descriptions
   function loadAllRecipes(){
     $.ajax({
       url: "/recipes.json",
       method: 'GET'
     })
     .then(function(data){
-       recipeArray = data;
-       $.each(
-         recipeArray, function(index, recipe){
-           let recipeData = "<h4><a href='/recipes/" + recipe.id + "'>"
-            + recipe.name + "</a>, " + recipe.upvotes + " upvotes</h4>"
-            + "<div id='description-" + recipe.id + "'>"
-            + recipe.description.substring(0, 120) + "..."
-            + "<a href='#' data-id='" + recipe.id + "' class='js-more'>Read More</a></div><br>";
+       let recipeArray = data;
+       $.each(recipeArray, function(index, recipe){
+           let recipeData = `<h4><a href='/recipes/${recipe.id}'> ${recipe.name}</a>, ${recipe.upvotes} upvotes</h4><div id='description-${recipe.id}'><p>${recipe.description.substring(0, 120)}... <a href='#' data-id=${recipe.id} class='js-more'>Read More</a></p></div><br>`
            $('#recipesInfo').append(recipeData);
-         }
-       )
+         })
      });
   }
 
+  // Displays the whole description when "read more" is clicked
   $("#recipesInfo").on('click', '.js-more', function(e){
     e.preventDefault();
     let id = this.dataset.id;
-    $.get("/recipes/" + id + ".json", function(data){
-      $("#description-" + id).html(data.description)
+    $.get(`/recipes/${id}.json`, function(data){
+      $(`#description-${id}`).html(data.description)
     });
   });
 
@@ -166,16 +160,3 @@ $(function(){
   })
 
 });
-
-
-
-
-
-
-
-
-// 1. Loop through array
-// 2. Create a class instance
-// 3. Call custom function on the new instance
-// 4. Append result (html you got from cusotm function) to the DOM
-// 5.
