@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   post '/recipes/:id/upvote' => 'recipes#upvote'
   post '/recipes/:id/downvote' => 'recipes#downvote'
 
-  get '/recipes/:id/next', to: 'recipes#next_recipe'
-  get '/recipes/:id/previous', to: 'recipes#previous_recipe'
+  get '/recipes/:id/next' => 'recipes#next_recipe'
+  get '/recipes/:id/previous' =>'recipes#previous_recipe'
 end
