@@ -16,6 +16,9 @@
 //= require_tree .
 
 $(function(){
+
+  // RECIPE index
+
   var recipeArray = [];
   var id = parseInt($(".js-next").attr("data-id"));
 
@@ -40,6 +43,7 @@ $(function(){
            $('#recipesInfo').append(recipeData);
          }
        )
+       recipeArray.sort()
      });
   }
 
@@ -51,6 +55,7 @@ $(function(){
     });
   });
 
+// RECIPE show
 
   function loadRecipe(data){
       history.pushState({}, "", "/recipes/" + data.id)
@@ -58,14 +63,18 @@ $(function(){
       $("#new_review").attr('action', recipeReviewPath);
       $(".recipeName").text(data["name"]);
       $(".recipeUpvotes").text(data["upvotes"]);
+      // // $("#author").empty();
+      // var author = new Author(data["user"])
+      // author.renderDisplay
       $(".recipeUser").text(data["user"]["name"]);
       $(".recipeDescription").text(data["description"]);
       $(".recipeDirections").text(data["directions"]);
-      // $("#recipe-ingredients-list").empty();
-      // data["ingredient_list"].forEach(function(element){
-      //   var ri = new RecipeIngredient(element);
-      //   ri.renderDisplay
-      // })
+      $("#ri-original").empty();
+      $("#ri-list").empty();
+      data["recipe_ingredients"].forEach(function(element){
+        var ri = new RecipeIngredient(element);
+        ri.renderDisplay();
+      })
       $(".js-next").attr("data-id", data["id"]);
       $(".js-previous").attr("data-id", data["id"]);
       $("#submitted-reviews").empty();
@@ -73,9 +82,32 @@ $(function(){
         var review = new Review(element);
         review.renderDisplay();
       });
-
   }
 
+  // function Author(data){
+  //   this.author = data.name;
+  // }
+  //
+  // Author.prototype.renderDisplay = function(){
+  //   var authorHtml = "";
+  //   authorHtml += "this.author"
+  //   $("#author").append(authorHtml)
+  // }
+
+  function RecipeIngredient(data){
+    this.id = data.id;
+    this.name = data.name;
+    this.quantity = data.quantity;
+  }
+
+  RecipeIngredient.prototype.renderDisplay = function(){
+    var html = "" ;
+    html += "<h4>" + "<a href='/ingredients/" + this.id + "'>" + this.name + "</a>"+ ", " + this.quantity+"</h4>"
+    // "<div class=\"ri\"><h4><a href=\"ingredients/" + this.id + ">" + this.name + "</a> heheh</h4></div>";
+      $("#ri-list").append(html);
+  }
+
+// NEXT button
 
   $(".js-next").on("click", function(e){
     var id = $(".js-next").attr("data-id")
@@ -86,6 +118,7 @@ $(function(){
     e.preventDefault();
   });
 
+// PREVIOUS button
   $(".js-previous").on("click", function(e){
     var id = $(".js-previous").attr("data-id")
     $.get("/recipes/" + id + "/previous", function(data){
@@ -108,7 +141,7 @@ function Review(data){
 
 Review.prototype.renderDisplay = function(){
   var html = "" ;
-  html += "<div class=\'well well-white\' id=\'review-\' + review.id + '\'>" + '<h4>' + this.title + '</h4>' + '<p>' + this.content + '</p>' + '<strong>' + '- ' + 'Me'+ '</strong>' + "</div>";
+  html += "<div class=\'well well-white\' id=\'review-\' + review.id + '\'>" + '<h4>' + this.title + '</h4>' + '<p>' + this.content + '</p>' + '<strong>' + '- ' + "<a href='/users/" + this.user.id + "/recipes'>" + this.user.name + "</a>" + '</strong>' + "</div>";
     $("#submitted-reviews").append(html);
 }
 
