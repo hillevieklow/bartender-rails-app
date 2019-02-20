@@ -66,7 +66,11 @@ class RecipesController < ApplicationController
 
   def edit
     find_recipe
-    @ingredients = Ingredient.all
+    if current_user != @recipe.user
+      redirect_to :back, alert: "You must be the author in order to delete a story."
+    else
+      @ingredients = Ingredient.all
+    end
   end
 
   def update
@@ -82,9 +86,26 @@ class RecipesController < ApplicationController
 
   def destroy
     find_recipe
-    @recipe.destroy
-    redirect_to recipes_path
+    if current_user != @recipe.user
+      redirect_to :back, alert: "You must be the author in order to delete a story."
+    else
+      @recipe.destroy
+      redirect_to recipes_path
+    end
   end
+
+  def next_recipe
+    @recipe = Recipe.find(params[:id])
+    @next_recipe = @recipe.next
+    render json: @next_recipe
+  end
+
+  def previous_recipe
+    @recipe = Recipe.find(params[:id])
+    @previous_recipe = @recipe.previous
+    render json: @previous_recipe
+  end
+
 
   private
 
