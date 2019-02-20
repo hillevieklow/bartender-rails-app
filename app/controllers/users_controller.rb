@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   def show
     find_user
+    @users = User.all.sort { |a,b| a.name <=> b.name }
   end
 
   private
