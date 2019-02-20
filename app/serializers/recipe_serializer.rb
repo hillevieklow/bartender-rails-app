@@ -17,4 +17,26 @@ class RecipeSerializer < ActiveModel::Serializer
     end
   end
 
+  def recipe_ingredients
+    object.recipe_ingredients.map do |ri| {
+      id: ri.ingredient.id,
+      quantity: ri.quantity,
+      name: ri.ingredient.name
+      }
+    end
+  end
+
+  # def ingredient_list
+  #   object.recipe_ingredients.map do |ri| {
+  #     id: ri.id,
+  #     user: {
+  #       id: ri.user_id,
+  #       name: User.find(ri.user_id).name
+  #     },
+  #     name: ri.name,
+  #     quantity: ri.quantity
+  #     }
+  #   end
+  # end
+
 end
