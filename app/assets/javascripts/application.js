@@ -36,7 +36,11 @@ $(function(){
     .then(function(data){
        let recipeArray = data;
        $.each(recipeArray, function(index, recipe){
-           let recipeData = `<h4><a href='/recipes/${recipe.id}'> ${recipe.name}</a>, ${recipe.upvotes} upvotes</h4><div id='description-${recipe.id}'><p>${recipe.description.substring(0, 120)}... <a href='#' data-id=${recipe.id} class='js-more'>Read More</a></p></div><br>`
+           let recipeData = `<h4><a href='/recipes/${recipe.id}'> ${recipe.name}</a>,
+                            ${recipe.upvotes} upvotes</h4><div id='description-${recipe.id}'>
+                            <p>${recipe.description.substring(0, 120)}...
+                            <a href='#' data-id=${recipe.id} class='js-more'>Read More</a>
+                            </p></div><br>`
            $('#recipesInfo').append(recipeData);
          })
      });
@@ -106,7 +110,6 @@ $(function(){
   $(".js-next").on("click", function(e){
     let id = $(".js-next").attr("data-id")
     $.get("/recipes/" + id + "/next", function(data){
-      console.log(data)
       loadRecipe(data);
     });
     e.preventDefault();
@@ -116,7 +119,6 @@ $(function(){
   $(".js-previous").on("click", function(e){
     let id = $(".js-previous").attr("data-id")
     $.get("/recipes/" + id + "/previous", function(data){
-      console.log(data)
       loadRecipe(data);
     });
     e.preventDefault();
@@ -147,11 +149,9 @@ $(function(){
       $.ajax({
         url: action,
         data: params,
-        dataType: "json",
         method: "POST"
       })
       .success(function(json){
-        $(".reviewBox").val("");
         let newReview = new Review(json);
         let reviewHtml = newReview.renderDisplay();
         $("#submitted-reviews").append(reviewHtml);
