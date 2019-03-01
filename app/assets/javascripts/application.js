@@ -151,6 +151,7 @@ $(function(){
         method: "POST"
       })
       .success(function(review){
+        $(".reviewBox").val("");
         let newReview = new Review(review);
         let reviewHtml = newReview.renderDisplay();
         $("#submitted-reviews").append(reviewHtml);
