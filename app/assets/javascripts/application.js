@@ -29,7 +29,7 @@ $(function(){
 
   // Loads all the recipes with descriptions
   function loadAllRecipes(){
-    $.ajax({
+    $.ajax({ //Perform an asynchronous HTTP (Ajax) request.
       url: "/recipes.json",
       method: 'GET'
     })
@@ -60,10 +60,9 @@ $(function(){
   // ------- JS FOR RECIPE SHOW PAGE -------//
   ////////////////////////////////////////////
 
-
-  // Loads all the data from the DOM into JS
+  // Loads all the data from JS to the DOM
   function loadRecipe(data){
-      history.pushState({}, "", `/recipes/${data.id}`)
+      // history.pushState({}, "", `/recipes/${data.id}`)
 
       $(".recipeName").text(data["name"]);
       $(".recipeUpvotes").text(data["upvotes"]);
@@ -109,7 +108,7 @@ $(function(){
   // NEXT button
   $(".js-next").on("click", function(e){
     let id = $(".js-next").attr("data-id")
-    $.get("/recipes/" + id + "/next", function(data){
+    $.get(`/recipes/${id}/next`, function(data){
       loadRecipe(data);
     });
     e.preventDefault();
@@ -118,7 +117,7 @@ $(function(){
   // PREVIOUS button
   $(".js-previous").on("click", function(e){
     let id = $(".js-previous").attr("data-id")
-    $.get("/recipes/" + id + "/previous", function(data){
+    $.get(`/recipes/${id}/previous`, function(data){
       loadRecipe(data);
     });
     e.preventDefault();
@@ -151,8 +150,8 @@ $(function(){
         data: params,
         method: "POST"
       })
-      .success(function(json){
-        let newReview = new Review(json);
+      .success(function(review){
+        let newReview = new Review(review);
         let reviewHtml = newReview.renderDisplay();
         $("#submitted-reviews").append(reviewHtml);
       })
